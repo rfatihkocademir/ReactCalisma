@@ -1,11 +1,9 @@
 import React,{Component} from "react";
 import Kurs from "./Kurs";
+import Button from "react-bootstrap/Button";
 
+import {BrowserRouter as Router, Link} from "react-router-dom";
 
-import {
-    BrowserRouter as Router,
-    Link,
-} from "react-router-dom";
 
 
 export default class Kurslar extends Component{
@@ -26,11 +24,9 @@ export default class Kurslar extends Component{
 
                 </tbody>
             </table>
-                <button className="btn btn-dark text-info float-right">
-                    <Router>
-                        <Link to="/yeniekle" />Yeni Ekle
-                    </Router>
-                </button>
+                <Button className="btn btn-dark text-info border-info float-right">
+                    Yeni Ekle
+                </Button>
 
             </div>
 
