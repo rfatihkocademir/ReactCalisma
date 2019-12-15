@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-
+import "../App.css"
+import Button from "react-bootstrap/Button";
 export default class Kurs extends Component{
     constructor(props) {
         super(props);
@@ -22,9 +23,17 @@ export default class Kurs extends Component{
     render() {
         var {isLoaded,items} = this.state;
         if (!isLoaded){
-            return <div>LOADİNG</div>
+            return (
+                <div className="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            )
         }
-        return( items.map((item)=>{
+        else
+        {return( items.map((item)=>{
             return(
                 <tr className="mt-7">
                     <td className="text-danger mt-2">#{item.id}</td>
@@ -32,19 +41,16 @@ export default class Kurs extends Component{
                     <td className="text-success mt-2">{item.couponCode}</td>
                     <td className="text-warning mt-2"> {item.price}</td>
                     <td>
-                        <button className="btn btn-sm btn btn-outline-danger mt-2">Sil</button>
+                        <Button className="btn btn-sm btn-danger mt-2">Sil</Button>
                     </td>
                     <td>
-                        <button className="btn btn-sm btn btn-outline-warning mt-2 ">Düzenle</button>
+                        <Button className="btn btn-sm btn-success mt-2 ">Düzenle</Button>
                     </td>
                 </tr>
             )
 
-        })
-
-
-
-        )
+            })
+        )}
     }
 
 
