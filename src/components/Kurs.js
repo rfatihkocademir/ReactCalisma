@@ -1,0 +1,51 @@
+import React, {Component} from "react";
+
+export default class Kurs extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            items:[],
+            isLoaded:false,
+        }
+    }
+    componentDidMount() {
+        fetch("http://localhost/ProjeCI/api/get_all_data")
+            .then(res=>res.json())
+            .then(json=>{
+                this.setState({
+                    isLoaded:true,
+                    items:json,
+                })
+            })
+    }
+
+    render() {
+        var {isLoaded,items} = this.state;
+        if (!isLoaded){
+            return <div>LOADİNG</div>
+        }
+        return( items.map((item)=>{
+            return(
+                <tr className="mt-7">
+                    <td className="text-danger mt-2">#{item.id}</td>
+                    <td className="text-info mt-2">{item.title}</td>
+                    <td className="text-success mt-2">{item.couponCode}</td>
+                    <td className="text-warning mt-2"> {item.price}</td>
+                    <td>
+                        <button className="btn btn-sm btn btn-outline-danger mt-2">Sil</button>
+                    </td>
+                    <td>
+                        <button className="btn btn-sm btn btn-outline-warning mt-2 ">Düzenle</button>
+                    </td>
+                </tr>
+            )
+
+        })
+
+
+
+        )
+    }
+
+
+}
